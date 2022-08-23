@@ -3,6 +3,11 @@ use std::env;
 mod lib;
 
 fn main() {
-    let mut args: Vec<String> = env::args().collect();
-    lib::Cli::start(&mut args);
+    let args: Vec<String> = env::args().collect();
+    
+    let mut initialization = lib::Cli {
+        args: args,
+    };
+
+    lib::Cli::start(&mut initialization);
 }
