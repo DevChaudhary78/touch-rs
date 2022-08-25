@@ -29,7 +29,7 @@ impl Cli {
             let result = File::create(&self.args[i]).expect("Error creating file!");
 
             match result {
-                _file => println!("{}","�� File created successfully.".bg_color(Color::Green).color(Color::White)),
+                _file => println!("{}","File created successfully.".bg_color(Color::Green).gradient(Color::White)),
             }
         }
     }
@@ -39,7 +39,7 @@ impl Cli {
             let result = fs::remove_file(&self.args[i]).expect("Error deleting file!");
 
             match result {
-                file => println!("File removed successfully: {:?}", file),
+                _file => println!("{}", "File removed successfully".gradient(Color::Red).bg_color(Color::Green)),
             }
         }
     }
