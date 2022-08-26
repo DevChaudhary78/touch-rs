@@ -1,7 +1,7 @@
 use std::fs::{self, File};
 extern crate colorful;
 
-use colorful::{Color, Colorful, HSL, RGB};
+use colorful::{Color, Colorful};
 
 pub struct Cli {
     pub args: Vec<String>,
@@ -13,7 +13,7 @@ impl Cli {
             println!("{}", "please provide the filename!".gradient(Color::Red))
         }
 
-        if self.args[1] == "--help" {
+        if self.args[1] == "-h" || self.args[1] == "--help" {
             println!("This is help page");
             return;
         }
