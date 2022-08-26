@@ -4,7 +4,7 @@ extern crate colorful;
 use colorful::{Color, Colorful, HSL, RGB};
 
 pub struct Cli {
-    pub args: Vec<String>
+    pub args: Vec<String>,
 }
 
 impl Cli {
@@ -14,11 +14,13 @@ impl Cli {
         }
 
         if self.args[1] == "--help" {
-            println!("This is help page")
+            println!("This is help page");
+            return;
         }
 
         if self.args[1] == "-r" || self.args[1] == "--remove" {
-            self.remove()
+            self.remove();
+            return;
         }
 
         self.create();
@@ -29,18 +31,19 @@ impl Cli {
             let result = File::create(&self.args[i]).expect("Error creating file!");
 
             match result {
-                _file => println!("{}","File created successfully.".bg_color(Color::Green).gradient(Color::White)),
+                _file => println!(
+                    "{}",
+                    "File created successfully."
+                        .bg_color(Color::Green)
+                        .gradient(Color::White)
+                ),
             }
         }
     }
 
     fn remove(&mut self) {
-        for i in 1..self.args.len() {
-            let result = fs::remove_file(&self.args[i]).expect("Error deleting file!");
-
-            match result {
-                _file => println!("{}", "File removed successfully".gradient(Color::Red).bg_color(Color::Green)),
-            }
+        for i in 2..self.args.len() {
+            fs::remove_file(&self.args[i]).expect("Error removing file.");
         }
     }
 }
